@@ -1,17 +1,26 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
+
+      <!-- Displaying the DogList Component -->
+      <DogList/>
   </div>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+//import {mapState} from 'vuex'
+import DogList from './components/DogList.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
+    DogList
+  },
+  computed: {
+    // this maps out the 
+    //...mapState({
+      //name: state => state
+  //})
   }
 }
 </script>
