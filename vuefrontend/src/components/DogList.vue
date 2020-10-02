@@ -9,11 +9,9 @@
         <option v-for="(dog, name) in this.$store.state.dogs.message" :value="name" :key="name">{{name}}</option>
       </select>
 
-<!-- this.$store.state.dogs.message -->
     <!-- unordered list for the dog images and info -->
     <ul id="tiles-container" class="table">
       <li v-for="(item, index) in listFilter " :key="index">
-          <!-- this.$store.state.dogURL -->
         <div>
           <img :src="item.data" alt="" contain height="200px" width="200px">
         </div>
@@ -35,6 +33,8 @@ export default {
     this.$store.dispatch('loadAllDogImages')
   },
   computed: {
+
+      // filtering by dog breed //
       listFilter() {
           var dogURL = this.$store.state.dogURL
           if(this.$store.state.selectedBreed == 'All'){

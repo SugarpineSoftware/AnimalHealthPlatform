@@ -12,7 +12,6 @@ export default new Vuex.Store({
     },
     actions: {
         // loading the list of all dogs... (Go to heaven) //
-        
         async loadAllDogs({commit}) {
             return new Promise((resolve, reject) => {
                 Axios.get('https://dog.ceo/api/breeds/list/all').then(data => {
@@ -33,7 +32,7 @@ export default new Vuex.Store({
             for(var i in dogArray){
                 await dispatch('loadDogImagesByBreed', {'breed': i})
             }
-        } ,
+        },
         
         async loadDogImagesByBreed({commit}, dogBreed){
             let breed = dogBreed.breed
@@ -54,7 +53,6 @@ export default new Vuex.Store({
     mutations:{
         SET_DOGS (state, dogs) {
             var tempDogNameArray = dogs
-            
             state.dogs = tempDogNameArray
         },
         SET_URL (state, dogURL) {

@@ -3,29 +3,25 @@
     <img alt="Vue logo" src="./assets/logo.png">
 
       <!-- Displaying the DogList Component -->
-      <!--<DropDown/>-->
       <DogList/>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+//import {mapState} from 'vuex'
 import DogList from './components/DogList.vue'
-//import DropDown from './components/DropDown.vue'
 
 export default {
   name: 'App',
   components: {
-    DogList //,
-    //DropDown
-  },
+    DogList
+  } /*,
   computed: {
     // this maps out the 
     ...mapState({
-      name: state => state,
-      subSpecies: state => state.message
+      name: state => state
     })
-  }
+  }*/
 }
 </script>
 
