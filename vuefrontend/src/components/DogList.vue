@@ -56,25 +56,27 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Styling for the collection view -->
 <style scoped>
-#tiles-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    grid-gap: 1rem;
-    max-width: 80rem;
-    margin: 5rem auto;
-    padding: 0 5rem;
-  }
+    #tiles-container {
+        display: grid;
+        max-width: 1280px;
+        padding: 0 80px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-gap: 16px;
 
-  #tiles-container img {
-    width: 100%;
-    height: 50vw;
-    object-fit: cover;
-    border-radius: 0.75rem;
-  }
+        margin: 80px auto;
+        
+    }
 
-  ul li{
-      list-style-type: none;
-  }
+    #tiles-container img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    ul li{
+        list-style-type: none;
+    }
 </style>
