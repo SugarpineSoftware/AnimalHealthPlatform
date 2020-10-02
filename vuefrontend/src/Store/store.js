@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         dogs: [],
         dogURL: [],
-        selectedBreed: 'Affenpinscher'
+        selectedBreed: 'All'
     },
     actions: {
         // loading the list of all dogs... (Go to heaven) //
@@ -47,14 +47,14 @@ export default new Vuex.Store({
         },
         // modifys the currently selected dog breed //
         modifyDogBreed({commit}, dogBreed){
-            commit('SET_DOGBREED', dogBreed)
+            commit('SET_DOGBREED', dogBreed.breed)
         }
         
     },
     mutations:{
         SET_DOGS (state, dogs) {
-            let tempDogNameArray = dogs
-            //tempDogNameArray.splice(0, 0, 'All')
+            var tempDogNameArray = dogs
+            
             state.dogs = tempDogNameArray
         },
         SET_URL (state, dogURL) {
