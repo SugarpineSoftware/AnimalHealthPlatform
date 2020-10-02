@@ -16,7 +16,6 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 Axios.get('https://dog.ceo/api/breeds/list/all').then(data => {
                     let dogs = data.data
-                    console.log(dogs)
                     commit('SET_DOGS', dogs)
                     resolve()
                 }).catch(error => {
@@ -26,6 +25,11 @@ export default new Vuex.Store({
             })
         },
 
+        // loading all the dog imates - So this is interesting, //
+        // Upon calling this, it then launches loadAllDogs then waits for //
+        // that to finish then gets the dog names // 
+        // then goes through the array of names and pulls all the images //
+        // from that. //
         async loadAllDogImages({dispatch}){
             await dispatch('loadAllDogs')
             let dogArray = this.state.dogs.message
@@ -34,6 +38,7 @@ export default new Vuex.Store({
             }
         },
         
+        // calls on the API to return a random URL for each breed //
         async loadDogImagesByBreed({commit}, dogBreed){
             let breed = dogBreed.breed
             Axios.get('https://dog.ceo/api/breed/' + breed + '/images/random').then(data => {
@@ -44,6 +49,8 @@ export default new Vuex.Store({
                 console.log('Error ->' + error)
             })
         },
+
+
         // modifys the currently selected dog breed //
         modifyDogBreed({commit}, dogBreed){
             commit('SET_DOGBREED', dogBreed.breed)
