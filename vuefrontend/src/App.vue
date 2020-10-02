@@ -6,7 +6,6 @@
 </template>
 
 <script>
-//import {mapState} from 'vuex'
 import DogList from './components/DogList.vue'
 
 export default {

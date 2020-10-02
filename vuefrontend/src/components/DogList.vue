@@ -1,4 +1,5 @@
 
+import { setTimeout } from 'timers';
 <template>
   <div id="container">
       <h1>Canine Breed Selection</h1>
@@ -25,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'DogList',
   props: {
