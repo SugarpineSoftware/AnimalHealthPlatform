@@ -15,6 +15,7 @@
         <div>
           <img :src="item.data" alt="" contain height="200px" width="200px">
         </div>
+        
         <div class="info">
           <h2>{{item.breed}}</h2>
         </div>
@@ -57,5 +58,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#tiles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-gap: 1rem;
+    max-width: 80rem;
+    margin: 5rem auto;
+    padding: 0 5rem;
+  }
 
+  #tiles-container img {
+    width: 100%;
+    height: 50vw;
+    object-fit: cover;
+    border-radius: 0.75rem;
+  }
+
+  ul li{
+      list-style-type: none;
+  }
 </style>
