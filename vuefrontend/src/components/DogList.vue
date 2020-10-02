@@ -11,16 +11,11 @@
     <ul id="tiles-container" class="table">
       <li v-for="(item, index) in this.$store.state.dogURL" :key="index">
         <div>
-          <img :src="item">
+          <img :src="item.data" alt="" contain height="200px" width="200px">
         </div>
-        <!--<div class="info">
-          <h2>{{ item.name }}</h2>
-          <div v-html="item.desc"></div>
-          <br>
-          <div class="button-group">
-            <button>More Info</button>
-          </div>
-        </div>-->
+        <div class="info">
+          <h2>{{item.breed}}</h2>
+        </div>
       </li>
     </ul>
   </div>
@@ -33,8 +28,8 @@ export default {
     
   },
   mounted() {
-    this.$store.dispatch('loadAllDogs')
-    this.$store.dispatch('loadAllDogImagesByBreed','affenpinscher')
+    this.$store.dispatch('loadAllDogImages')
+    this.$store.dispatch('loadDogImagesByBreed','affenpinscher')
   }
 }
 </script>

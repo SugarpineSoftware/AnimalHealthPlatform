@@ -12,24 +12,37 @@ export default new Vuex.Store({
     },
     actions: {
         // loading the list of all dogs... (Go to heaven) //
-        loadAllDogs({commit}){
-            console.log('Loading dogs')
-            Axios.get('https://dog.ceo/api/breeds/list/all').then(data => {
-                let dogs = data.data
-                commit('SET_DOGS', dogs)
-            }).catch(error => {
-                console.log(error)
+        
+        async loadAllDogs({commit}) {
+            return new Promise((resolve, reject) => {
+                Axios.get('https://dog.ceo/api/breeds/list/all').then(data => {
+                    let dogs = data.data
+                    console.log(dogs)
+                    commit('SET_DOGS', dogs)
+                    resolve()
+                }).catch(error => {
+                    console.log(error)
+                    reject()
+                })
             })
         },
+
+        async loadAllDogImages({dispatch}){
+            await dispatch('loadAllDogs')
+            let dogArray = this.state.dogs.message
+            for(var i in dogArray){
+                await dispatch('loadDogImagesByBreed', {'breed': i})
+            }
+        } ,
         
-        loadAllDogImagesByBreed({commit}, dogBreed){
-            console.log('Dog breed ' + dogBreed)
-            Axios.get('https://dog.ceo/api/breed/' + dogBreed + '/images/random').then(data => {
-                let url = data.data.message
-                console.log(url)
+        async loadDogImagesByBreed({commit}, dogBreed){
+            let breed = dogBreed.breed
+            Axios.get('https://dog.ceo/api/breed/' + breed + '/images/random').then(data => {
+                let url = {'breed': breed, 'data' :data.data.message}
                 commit('SET_URL', url)
+                
             }).catch(error => {
-                console.log(error)
+                console.log('Error ->' + error)
             })
         },
         // modifys the currently selected dog breed //
@@ -40,13 +53,18 @@ export default new Vuex.Store({
     },
     mutations:{
         SET_DOGS (state, dogs) {
-            state.dogs = dogs
+            let tempDogNameArray = dogs
+            //tempDogNameArray.splice(0, 0, 'All')
+            state.dogs = tempDogNameArray
         },
         SET_URL (state, dogURL) {
-            state.dogURL = dogURL
+            let tempDogArray = state.dogURL
+            tempDogArray.push(dogURL)
+            state.dogURL = tempDogArray
         },
         SET_DOGBREED (state, dogBreed) {
             state.selectedBreed = dogBreed
+            
         }
     }
 })

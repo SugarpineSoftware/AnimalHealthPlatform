@@ -1,6 +1,6 @@
 <template>
 <div class="filter">
-  <label for="basic-dropdown">List of Dogs: </label>
+  <label for="basic-dropdown">Search by dog breed: </label>
   <select name="basic-dropdown">
     <option v-for="(dog, name) in this.$store.state.dogs.message" :value="dog" :key="name">{{name}}</option>
   </select>
